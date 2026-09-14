@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import fs from 'node:fs';
 import path from 'node:path';
 
 import { Command } from 'commander';
@@ -13,14 +12,7 @@ import { getContainer } from '../lib/container.js';
 
 import { parseUseCommand } from '../lib/utils/tool-args.js';
 
-import { PACKAGE_ROOT } from '../lib/utils/package-root.js';
-
-
-
-// single source of truth for the version: package.json (never hardcode)
-const { version: VERSION } = JSON.parse(
-  fs.readFileSync(path.join(PACKAGE_ROOT, 'package.json'), 'utf8'),
-);
+import { PACKAGE_VERSION as VERSION } from '../lib/utils/package-root.js';
 
 const c = getContainer();
 
