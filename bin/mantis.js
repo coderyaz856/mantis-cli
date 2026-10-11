@@ -212,16 +212,23 @@ program
   .argument('[target]', 'space, thread, or both', 'both')
 
   .action(async (target) => {
+    try {
 
-    if (target === 'space') return selection.pickSpace();
+      if (target === 'space') return await selection.pickSpace();
 
-    if (target === 'thread') return selection.pickThread();
+      if (target === 'thread') return await selection.pickThread();
 
-    ui.banner('Mantis — switch space / thread');
+      ui.banner('Mantis — switch space / thread');
 
-    await selection.pickSpace();
+      await selection.pickSpace();
 
-    await selection.pickThread();
+      await selection.pickThread();
+
+    } catch (e) {
+
+      ui.die(e.message || String(e));
+
+    }
 
   });
 
